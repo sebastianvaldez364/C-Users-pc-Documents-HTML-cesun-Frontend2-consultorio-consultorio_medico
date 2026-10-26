@@ -1,0 +1,31 @@
+{% extends 'citas/base.html' %}
+
+{% block contenido %}
+
+<h2>Bienvenido al Consultorio Médico</h2>
+
+<p>Desde este sistema puedes consultar la información de los pacientes y sus citas médicas.</p>
+
+<div class="tarjetas">
+
+    <div class="tarjeta">
+        <h3>Pacientes registrados</h3>
+        <p>{{ total_pacientes }}</p>
+        <a href="{% url 'pacientes' %}">Ver pacientes</a>
+    </div>
+
+    <div class="tarjeta">
+        <h3>Citas registradas</h3>
+        <p>{{ total_citas }}</p>
+        <a href="{% url 'lista_citas' %}">Ver citas</a>
+    </div>
+
+    <div class="tarjeta">
+        <h3>Citas pendientes</h3>
+        <p>{{ citas_pendientes }}</p>
+        <a href="{% url 'citas_pendientes' %}">Ver pendientes</a>
+    </div>
+
+</div>
+
+{% endblock %}

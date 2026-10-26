@@ -1,0 +1,51 @@
+{% extends 'citas/base.html' %}
+
+{% block contenido %}
+
+<h2>Información del paciente</h2>
+
+<div class="informacion">
+    <p><strong>Nombre:</strong> {{ paciente.nombre }}</p>
+    <p><strong>Apellido:</strong> {{ paciente.apellido }}</p>
+    <p><strong>Edad:</strong> {{ paciente.edad }}</p>
+    <p><strong>Teléfono:</strong> {{ paciente.telefono }}</p>
+    <p><strong>Correo:</strong> {{ paciente.correo }}</p>
+</div>
+
+<h2>Citas médicas del paciente</h2>
+
+<div class="tabla-contenedor">
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Motivo</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for cita in citas %}
+            <tr>
+                <td>{{ cita.fecha|date:"d/m/Y" }}</td>
+                <td>{{ cita.hora|time:"H:i" }}</td>
+                <td>{{ cita.motivo }}</td>
+                <td>
+                    <span class="estado {{ cita.estado|lower }}">
+                        {{ cita.estado }}
+                    </span>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">Este paciente no tiene citas registradas.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<a class="boton" href="{% url 'pacientes' %}">Volver a pacientes</a>
+
+{% endblock %}
